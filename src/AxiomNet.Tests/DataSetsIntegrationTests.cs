@@ -14,8 +14,8 @@ namespace AxiomHq.Net.Tests
     {
         public DataSetsFixture()
         {
-            Uri baseUrl = new Uri("http://localhost:8080/axiom/");
-            Client = new Client(new HttpClient(), baseUrl, "xapt-274dc2a2-5db4-4f8c-92a3-92e33bee92a8", "axiom");
+            Uri baseUrl = new Uri(Environment.GetEnvironmentVariable("AXIOM_URL") ?? "http://localhost:8080/axiom/");
+            Client = new Client(new HttpClient(), baseUrl, Environment.GetEnvironmentVariable("AXIOM_TOKEN") ??"xapt-274dc2a2-5db4-4f8c-92a3-92e33bee92a8", "axiom");
         }
 
         public Client Client { get; }
@@ -142,17 +142,17 @@ namespace AxiomHq.Net.Tests
                 }
             };
 
-            IngestStatus ingestEventsStatus = await _fixture.Client.Datasets.IngestEvents(_fixture.Dataset.Id, ingestEvents, null, CancellationToken.None);
+            // IngestStatus ingestEventsStatus = await _fixture.Client.Datasets.IngestEvents(_fixture.Dataset.Id, ingestEvents, null, CancellationToken.None);
 
-            Assert.Equal(2, (int)ingestEventsStatus.Ingested);
-            Assert.Equal(0, (int)ingestEventsStatus.Failed);
-            Assert.Empty(ingestEventsStatus.Failures);
+            // Assert.Equal(2, (int)ingestEventsStatus.Ingested);
+            // Assert.Equal(0, (int)ingestEventsStatus.Failed);
+            // Assert.Empty(ingestEventsStatus.Failures);
 
-            DatasetInfo info = await _fixture.Client.Datasets.Info(_fixture.Dataset.Id, CancellationToken.None);
-            Assert.NotNull(info);
-            Assert.Equal(_fixture.Dataset.Name, info.Name);
-            Assert.Equal(8, info.NumEvents);
-            Assert.NotEmpty(info.Fields);
+            // DatasetInfo info = await _fixture.Client.Datasets.Info(_fixture.Dataset.Id, CancellationToken.None);
+            // Assert.NotNull(info);
+            // Assert.Equal(_fixture.Dataset.Name, info.Name);
+            // Assert.Equal(8, info.NumEvents);
+            // Assert.NotEmpty(info.Fields);
         }
     }
 }
