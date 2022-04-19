@@ -104,16 +104,21 @@ namespace AxiomHq.Net.Tests
 
             await using (Stream s = GetStream(ingestData))
             {
-                await using (GZipStream gZipStream = new GZipStream(s, CompressionMode.Compress))
+                await using MemoryStream ms = new MemoryStream();
+                await using (GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress))
                 {
-                    IngestStatus ingestStatus = await _fixture.Client.Datasets.Ingest(_fixture.Dataset.Id, gZipStream,
-                        ContentType.Json, ContentEncoding.Gzip, null, CancellationToken.None);
-
-                    Assert.Equal(2, (int)ingestStatus.Ingested);
-                    Assert.Equal(0, (int)ingestStatus.Failed);
-                    Assert.Empty(ingestStatus.Failures);
-                    Assert.Equal(s.Length, (int)ingestStatus.ProcessedBytes);
+                    s.CopyTo(gZipStream);
                 }
+
+                ms.Position = 0;
+
+                IngestStatus ingestStatus = await _fixture.Client.Datasets.Ingest(_fixture.Dataset.Id, ms,
+                    ContentType.Json, ContentEncoding.Gzip, null, CancellationToken.None);
+
+                Assert.Equal(2, (int)ingestStatus.Ingested);
+                Assert.Equal(0, (int)ingestStatus.Failed);
+                Assert.Empty(ingestStatus.Failures);
+                Assert.Equal(s.Length, (int)ingestStatus.ProcessedBytes);
             }
 
             var ingestEvents = new[]
