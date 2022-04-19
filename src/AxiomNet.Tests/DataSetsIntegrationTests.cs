@@ -108,6 +108,7 @@ namespace AxiomHq.Net.Tests
                 await using GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress);
 
                 s.CopyTo(gZipStream);
+                gZipStream.Flush();
                 ms.Position = 0;
 
                 IngestStatus ingestStatus = await _fixture.Client.Datasets.Ingest(_fixture.Dataset.Id, ms,
