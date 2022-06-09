@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -107,7 +108,7 @@ namespace AxiomHq.Net.Tests
                 await using MemoryStream ms = new MemoryStream();
                 await using GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress);
 
-                s.CopyTo(gZipStream);
+                await s.CopyToAsync(gZipStream);
                 gZipStream.Flush();
                 ms.Position = 0;
 
@@ -146,17 +147,43 @@ namespace AxiomHq.Net.Tests
                 }
             };
 
-            // IngestStatus ingestEventsStatus = await _fixture.Client.Datasets.IngestEvents(_fixture.Dataset.Id, ingestEvents, null, CancellationToken.None);
+            IngestStatus ingestEventsStatus = await _fixture.Client.Datasets.IngestEvents(_fixture.Dataset.Id, ingestEvents, null, CancellationToken.None);
 
-            // Assert.Equal(2, (int)ingestEventsStatus.Ingested);
-            // Assert.Equal(0, (int)ingestEventsStatus.Failed);
-            // Assert.Empty(ingestEventsStatus.Failures);
+            Assert.Equal(2, (int)ingestEventsStatus.Ingested);
+            Assert.Equal(0, (int)ingestEventsStatus.Failed);
+            Assert.Empty(ingestEventsStatus.Failures);
 
-            // DatasetInfo info = await _fixture.Client.Datasets.Info(_fixture.Dataset.Id, CancellationToken.None);
-            // Assert.NotNull(info);
-            // Assert.Equal(_fixture.Dataset.Name, info.Name);
-            // Assert.Equal(8, info.NumEvents);
-            // Assert.NotEmpty(info.Fields);
+            DatasetInfo info = await _fixture.Client.Datasets.Info(_fixture.Dataset.Id, CancellationToken.None);
+            Assert.NotNull(info);
+            Assert.Equal(_fixture.Dataset.Name, info.Name);
+            Assert.Equal(8, info.NumEvents);
+            Assert.NotEmpty(info.Fields);
+
+            DatasetStats stats = await _fixture.Client.Datasets.Stats(CancellationToken.None);
+
+            Assert.NotNull(stats);
+            bool datasetFound = stats.Datasets.Any(x => string.CompareOrdinal(x.Name, _fixture.Dataset.Name) == 0);
+            Assert.True(datasetFound, "stats do not contain the dataset created for this test");
+
+            string fieldDescription = "HTTP status code returned as part of the response";
+            FieldUpdateRequest fieldUpdateRequest = new FieldUpdateRequest()
+            {
+                Description = fieldDescription
+            };
+            Field field = await _fixture.Client.Datasets.UpdateField(_fixture.Dataset.Id, "response",
+                fieldUpdateRequest, CancellationToken.None);
+
+            Assert.NotNull(field);
+            Assert.Equal("response", field.Name);
+            Assert.Equal(fieldDescription, field.Description);
+            Assert.Equal("integer", field.Type);
+
+            DatasetTrimResult trimResult = await _fixture.Client.Datasets.Trim(_fixture.Dataset.Id, TimeSpan.FromSeconds(1.0),
+                CancellationToken.None);
+
+            Assert.NotNull(trimResult);
+            Assert.Equal(0, trimResult.BlocksDeleted);
+
         }
     }
 }

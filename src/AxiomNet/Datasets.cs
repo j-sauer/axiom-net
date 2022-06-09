@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -148,6 +151,18 @@ namespace AxiomHq.Net
         public uint WalLength { get; set; }
     }
 
+    public record DatasetTrimRequest
+    {
+        [JsonPropertyName("maxDuration")]
+        public string MaxDuration { get; set; }
+    }
+
+    public record DatasetTrimResult
+    {
+        [JsonPropertyName("numDeleted")]
+        public int BlocksDeleted { get; set; }
+    }
+
     public record IngestOptions
     {
         public string? TimestampField { get; set; }
@@ -290,9 +305,46 @@ namespace AxiomHq.Net
         public async Task<IngestStatus> IngestEvents(string id, IReadOnlyList<object> events,
             IngestOptions? options, CancellationToken ct)
         {
-            // NDJSON
-            // Zstd
-            throw new NotImplementedException();
+            string[] serializedEvents = new string[events.Count];
+            for (int i = 0; i < events.Count; i++)
+            {
+                serializedEvents[i] = JsonSerializer.Serialize(events[i]);
+            }
+
+            byte[] content = Encoding.UTF8.GetBytes(string.Join("\n", serializedEvents));
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress))
+                {
+                    gZipStream.Write(content, 0, content.Length);
+                    gZipStream.Flush();
+
+                    ms.Position = 0;
+
+                    return await Ingest(id, ms, ContentType.Ndjson, ContentEncoding.Gzip, options, ct);
+                }
+            }
+        }
+
+        public async Task<DatasetTrimResult> Trim(string id, TimeSpan duration, CancellationToken ct)
+        {
+            string path = BasePath + "/" + id + "/trim";
+
+            string durationS = $"{duration.Seconds}s";
+            if (duration.Minutes > 0)
+                durationS = $"{duration.Minutes}m{durationS}";
+            int hours = duration.Days * 24 + duration.Hours;
+            if (hours > 0)
+                durationS = $"{hours}h{durationS}";
+
+            DatasetTrimRequest req = new DatasetTrimRequest()
+            {
+                MaxDuration = durationS
+            };
+
+            DatasetTrimResult res = await _client.Call<DatasetTrimResult, DatasetTrimRequest>(HttpMethod.Post, path, req, ct);
+            return res;
         }
     }
 }
