@@ -311,20 +311,19 @@ namespace AxiomHq.Net
                 serializedEvents[i] = JsonSerializer.Serialize(events[i]);
             }
 
-            byte[] content = Encoding.UTF8.GetBytes(string.Join("\n", serializedEvents));
+            string contentAsString = string.Join("\n", serializedEvents) + "\n";
 
-            using (MemoryStream ms = new MemoryStream())
+            byte[] content = Encoding.UTF8.GetBytes(contentAsString);
+
+            using MemoryStream ms = new MemoryStream();
+            using (GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress))
             {
-                using (GZipStream gZipStream = new GZipStream(ms, CompressionMode.Compress))
-                {
-                    gZipStream.Write(content, 0, content.Length);
-                    gZipStream.Flush();
-
-                    ms.Position = 0;
-
-                    return await Ingest(id, ms, ContentType.Ndjson, ContentEncoding.Gzip, options, ct);
-                }
+                gZipStream.Write(content, 0, content.Length);
             }
+
+            using MemoryStream s = new MemoryStream(ms.ToArray());
+
+            return await Ingest(id, s, ContentType.Ndjson, ContentEncoding.Gzip, options, ct);
         }
 
         public async Task<DatasetTrimResult> Trim(string id, TimeSpan duration, CancellationToken ct)

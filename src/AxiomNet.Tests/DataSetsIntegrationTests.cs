@@ -53,6 +53,11 @@ namespace AxiomHq.Net.Tests
         [Fact]
         public async void Test()
         {
+            await Assert.ThrowsAsync<AxiomException>(async () =>
+            {
+                await _fixture.Client.Datasets.Create(_fixture.Dataset.Id, "Another description", CancellationToken.None);
+            });
+
             string newDescription = "This is a soon to be filled test dataset";
             Dataset ds = await _fixture.Client.Datasets.Update(_fixture.Dataset.Id, newDescription, CancellationToken.None);
 
@@ -129,7 +134,7 @@ namespace AxiomHq.Net.Tests
                     remote_ip = "93.180.71.1",
                     remote_user = "-",
                     request = "GET /downloads/product_1 HTTP/1.1",
-                    repsone = 304,
+                    response = 304,
                     bytes = 0,
                     referrer = "-",
                     agent = "Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)"
@@ -140,7 +145,7 @@ namespace AxiomHq.Net.Tests
                     remote_ip = "93.180.71.2",
                     remote_user = "-",
                     request = "GET /downloads/product_1 HTTP/1.1",
-                    repsone = 304,
+                    response = 304,
                     bytes = 0,
                     referrer = "-",
                     agent = "Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)"
@@ -156,7 +161,7 @@ namespace AxiomHq.Net.Tests
             DatasetInfo info = await _fixture.Client.Datasets.Info(_fixture.Dataset.Id, CancellationToken.None);
             Assert.NotNull(info);
             Assert.Equal(_fixture.Dataset.Name, info.Name);
-            Assert.Equal(8, info.NumEvents);
+            Assert.Equal(6, info.NumEvents);
             Assert.NotEmpty(info.Fields);
 
             DatasetStats stats = await _fixture.Client.Datasets.Stats(CancellationToken.None);

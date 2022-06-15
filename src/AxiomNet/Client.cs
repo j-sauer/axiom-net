@@ -76,11 +76,11 @@ namespace AxiomHq.Net
 
             bool cloudUrlSetByOption = string.CompareOrdinal(baseUrl.ToString(), CloudUrl) == 0;
             bool cloudUrlSetByEnvironment = string.CompareOrdinal(deploymentUrlEnv, CloudUrl) == 0;
-            bool isIngestToken = IsIngestToken(accessToken);
+            bool isPersonalToken = IsPersonalToken(accessToken);
 
-            if ((cloudUrlSetByOption || cloudUrlSetByEnvironment) && organisationId == null && !isIngestToken)
+            if (organisationId == null)
             {
-                if (orgIdEnv == null)
+                if (orgIdEnv == null && (cloudUrlSetByOption || cloudUrlSetByEnvironment) && isPersonalToken)
                 {
                     throw new ArgumentException(
                         $"Either {nameof(organisationId)} has to be set or environment variable AXIOM_ORG_ID.");
@@ -177,13 +177,14 @@ namespace AxiomHq.Net
 
                 string content = await resp.Content.ReadAsStringAsync();
 
+                AxiomError? err = null;
                 try
                 {
-                    AxiomError? err = JsonSerializer.Deserialize<AxiomError>(content);
-                    if (err != null)
-                        throw new AxiomException((int)resp.StatusCode, err.Message);
+                    err = JsonSerializer.Deserialize<AxiomError>(content);
                 }
                 catch { }
+                if (err != null)
+                    throw new AxiomException((int)resp.StatusCode, err.Message);
 
                 throw new AxiomException((int)resp.StatusCode, content);
             }
