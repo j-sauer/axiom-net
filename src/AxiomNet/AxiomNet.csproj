@@ -7,6 +7,15 @@
     <AssemblyName>AxiomHq.Net</AssemblyName>
     <RootNamespace>AxiomHq.Net</RootNamespace>
     <PackageId>AxiomHq.Net</PackageId>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix>beta1</VersionSuffix>
+    <Authors>Jens Sauer</Authors>
+    <Company>Axiom, Inc.</Company>
+    <Copyright>Copyright 2022 © Axiom, Inc.</Copyright>
+    <Description>.NET client library for the Axiom API.</Description>
+    <PackageProjectUrl>https://www.axiom.co</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
