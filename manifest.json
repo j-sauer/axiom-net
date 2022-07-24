@@ -1,0 +1,323 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/axiom-net/axiom-net/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.AxiomException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.AxiomException.html",
+          "hash": "Jk+K6UKgAj9TKkuzu5fGjATukcvU/4CsVmFoTNjIULQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.Client.html",
+          "hash": "dS5qUAoWJe+3L6REppvwbHr0iRxptOS6hkEPp8gMZJs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.ContentEncoding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.ContentEncoding.html",
+          "hash": "ME6JCiatzb/kT08sNRwvWEotB7adFvVvdk9I599ftP4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.ContentType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.ContentType.html",
+          "hash": "2MUdHEqyLEekrluYlIVyIUKeRe0qdcG9vU5h9wUAcBg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.Dataset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.Dataset.html",
+          "hash": "LY9JJ2WgGoBYEhUFE0WsZcQjrh6tsK70+R1ZJoJj/ZU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.DatasetCreateRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.DatasetCreateRequest.html",
+          "hash": "UZdyyMnCYcq3MlYCXcrQUKMYSQBgU5HeSNz7XgQ+CZE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.DatasetInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.DatasetInfo.html",
+          "hash": "JbzpHhzPESj5TeyIzSMlZj+HGyTKGC9mRFxtBKl8cpk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.DatasetStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.DatasetStats.html",
+          "hash": "icCcs7Hd0ngNgHsPQcQopgrWaeFBZ/hwbXemt9vmqDE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.DatasetTrimResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.DatasetTrimResult.html",
+          "hash": "Z3PkRwUalslMx+gz3fy2kKyymptRY22f8N05FH6GwL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.DatasetUpdateRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.DatasetUpdateRequest.html",
+          "hash": "ZmR7RJpTPI4FuQRJN30Wy/ejhRSHevWQ5Y53dpJ+t+8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.Datasets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.Datasets.html",
+          "hash": "rFSBTIOkfBzJtrMUhfFvpjP1Q9GFt02Jp34sXVqHcVg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.Field.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.Field.html",
+          "hash": "bGmItsKH0bd9lgmBDsOPH0Td6Fso03Fz7ykibzWCO7U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.FieldUpdateRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.FieldUpdateRequest.html",
+          "hash": "jHOf8FdCl5q5bBWMW5eojCxD4xY4JEsvzG7xTuxQ0S4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.IngestFailure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.IngestFailure.html",
+          "hash": "cf9VK/sMPBol+k1S/S6UJzDaM+ULvT8kODDrvp71UPs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.IngestOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.IngestOptions.html",
+          "hash": "GF9vV/9UpNydQPDY/sBOD+T4Mp8tlTLTGqunGoQEiFw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.IngestStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.IngestStatus.html",
+          "hash": "s988g6Iup2vTmmkqDTtM51TQyXYw+HYlP8tXTAarko8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/AxiomNet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/AxiomNet.html",
+          "hash": "BOnpW5mY2dP+t0/4cfVvPylPTxkpFhLj97YbkhV+xcs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "YD9Xna2rV9CBs10e/obCXWjYepuDZ05wisQFGfowgLs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "oejgZ8OyhvDr+SAngT53Z4Gv6K2NurAkvmf3E38hq4Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "oJgns2C+HACatQ9lpLIiZH/yi2mSwxKf6V/9b+UgRak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "Eeih+D/NG7L0xLV2kOPxEr/rS6CF9JHY4yzfjoDOVlM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 17,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

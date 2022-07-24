@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>AxiomNet </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="AxiomNet ">
+    <meta name="generator" content="docfx 2.59.3.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="axiomnet">AxiomNet</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>AxiomNet is a .Net library for accessing the <a href="https://www.axiom.co/">Axiom</a>
+API.</p>
+<h2 id="installation">Installation</h2>
+<p>You can add the library via nuget in your project folder with the following command:</p>
+<pre><code class="lang-shell">dotnet add package AxiomNet --version 0.1.0
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<p>The client is initialized with the url of the deployment and an access token
+when using Axiom Selfhost or an access token and the users organization id when
+using Axiom Cloud.</p>
+<p>The access token can be a personal token retrieved from the users profile page
+or an ingest token retrieved from the settings of the Axiom deployment.</p>
+<p>The personal access token grants access to all resources available to the user
+on his behalf.</p>
+<p>The ingest token just allows ingestion into the datasets the token is configured
+for.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="lang-csharp">using AxiomNet;
+
+HttpClient httpClient = new HttpClient(); // or use an appropriate factory
+string token = &quot;yourAccessToken&quot;;
+string organizationId = &quot;axiom&quot;;
+Uri baseUrl = new Uri(&quot;http://localhost:8080/axiom/&quot;);
+Client client = new Client(httpCLient, baseUrl, token, organizationId);
+
+var ingestEvents = new[]
+{
+    new
+    {
+        time = &quot;17/May/2015:08:05:32 +0000&quot;,
+        remote_ip = &quot;93.180.71.1&quot;,
+        remote_user = &quot;-&quot;,
+        request = &quot;GET /downloads/product_1 HTTP/1.1&quot;,
+        response = 304,
+        bytes = 0,
+        referrer = &quot;-&quot;,
+        agent = &quot;Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)&quot;
+    },
+    new
+    {
+        time = &quot;17/May/2015:08:05:33 +0000&quot;,
+        remote_ip = &quot;93.180.71.2&quot;,
+        remote_user = &quot;-&quot;,
+        request = &quot;GET /downloads/product_1 HTTP/1.1&quot;,
+        response = 304,
+        bytes = 0,
+        referrer = &quot;-&quot;,
+        agent = &quot;Debian APT-HTTP/1.3 (0.8.16~exp12ubuntu10.21)&quot;
+    }
+};
+
+var ingestEventsStatus = await client.Datasets.IngestEvents(&quot;dataSetId&quot;, ingestEvents, null, CancellationToken.None);
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p>You can find the Axiom documentation on the <a href="https://docs.axiom.co/">docs website.</a>
+A documentation of the API of this library can be found on <a href="api/index.md">here</a>.</p>
+<h2 id="license">License</h2>
+<p>© Jens Sauer, 2022</p>
+<p>Distributed under MIT License (<code>The MIT License</code>).</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/j-sauer/axiom-net/blob/main/docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
