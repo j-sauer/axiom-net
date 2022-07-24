@@ -8,10 +8,16 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AxiomHq.Net
+namespace AxiomNet
 {
+    /// <summary>
+    /// The exception that is thrown when an error occurred during a request to the Axiom HTTP API.
+    /// </summary>
     public class AxiomException : Exception
     {
+        /// <summary>
+        /// The HTTP status code.
+        /// </summary>
         public int Status { get; }
 
         public AxiomException(int status, string message) : base(message)
@@ -33,6 +39,9 @@ namespace AxiomHq.Net
         public string Message { get; set; }
     }
 
+    /// <summary>
+    /// A client that provides access to the Axiom HTTP API.
+    /// </summary>
     public class Client
     {
         private const string CloudUrl = "https://cloud.axiom.co";
@@ -46,6 +55,24 @@ namespace AxiomHq.Net
 
         private readonly Datasets _datasets;
 
+        /// <summary>
+        /// Creates a new client. It automatically takes its configuration from the environment if the parameters beside
+        /// <code>client</code> are not set.
+        ///
+        /// To connect to Axiom Cloud:
+        ///  - AXIOM_TOKEN
+        ///  - AXIOM_ORG_ID (only when using a personal token)
+        ///
+        /// To connect to an Axiom Selfhost:
+        ///  - AXIOM_URL
+        ///  - AXIOM_TOKEN
+        ///
+        /// The access token must be an api or personal token which can created on the settings or user profile on Axiom.
+        /// </summary>
+        /// <param name="client">An <code>HttpClient</code> to use for the requests.</param>
+        /// <param name="baseUrl">The base url of the Axiom instance.</param>
+        /// <param name="accessToken">The access token for the Axiom API.</param>
+        /// <param name="organisationId">The organisation Id.</param>
         public Client(HttpClient client, Uri? baseUrl = null, string? accessToken = null, string? organisationId = null)
         {
             _client = client;
@@ -96,6 +123,9 @@ namespace AxiomHq.Net
             _datasets = new Datasets(this);
         }
 
+        /// <summary>
+        /// Provides access to the dataset operations of the Axiom HTTP API.
+        /// </summary>
         public Datasets Datasets => _datasets;
 
         private bool IsApiToken(string token) => token.StartsWith("xaat-");

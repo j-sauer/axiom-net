@@ -70,12 +70,10 @@ var ingestEventsStatus = await client.Datasets.IngestEvents("dataSetId", ingestE
 ## Documentation
 
 You can find the Axiom documentation on the [docs website.](https://docs.axiom.co/)
-A documentation of this library can be found [here](https://j-sauer.github.io/axiom-net/).
+A documentation of the API of this library can be found on [here](api/index.md).
 
 ## License
 
 &copy; Jens Sauer, 2022
 
 Distributed under MIT License (`The MIT License`).
-
-See [LICENSE.md](LICENSE) for more information.

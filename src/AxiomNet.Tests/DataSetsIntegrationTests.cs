@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AxiomHq.Net.Tests
+namespace AxiomNet.Tests
 {
     public class DataSetsFixture : IAsyncLifetime
     {

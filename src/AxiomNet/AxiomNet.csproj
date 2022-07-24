@@ -4,22 +4,23 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>9</LangVersion>
-    <AssemblyName>AxiomHq.Net</AssemblyName>
-    <RootNamespace>AxiomHq.Net</RootNamespace>
-    <PackageId>AxiomHq.Net</PackageId>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>beta1</VersionSuffix>
+    <AssemblyName>AxiomNet</AssemblyName>
+    <RootNamespace>AxiomNet</RootNamespace>
+    <PackageId>AxiomNet</PackageId>
+    <VersionPrefix>0.1.0</VersionPrefix>
     <Authors>Jens Sauer</Authors>
-    <Company>Axiom, Inc.</Company>
-    <Copyright>Copyright 2022 © Axiom, Inc.</Copyright>
+    <Copyright>Copyright 2022 © Jens Sauer</Copyright>
     <Description>.NET client library for the Axiom API.</Description>
-    <PackageProjectUrl>https://www.axiom.co</PackageProjectUrl>
+    <PackageProjectUrl>https://j-sauer.github.io/axiom-net/</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Net.Http.Json" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
